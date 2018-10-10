@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Edit Flashcard</title>
+</head>
+
+<body>
+  <nav class="blue-grey darken-1">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="./index.html" class="brand-logo center">Flash Card Maker</a>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-s12">
+          <div class="card-panel">
+            <p id="error" class="red-text hide"> Please fill out all fields</p>
+            <h5 class="teal-text lighten-2" id="question-number"></h5>
+            <form>
+              <div class="input-field col-s12">
+                <input placeholder="Flash Card Title" required class="validate" type="text" name="title" id="flashcard-title">
+              </div>
+              <div class="input-field col-s12">
+                <input placeholder="Flashcard Question" type="text" name="question" id="flashcard-question">
+              </div>
+              <div class="input-field col-s12">
+                <input placeholder="Flashcard Answer" type="text" name="answer" id="flashcard-answer">
+              </div>
+          </div>
+          </form>
+          <div class="row center">
+            <button id="prev" class="btn"><i class="large material-icons">keyboard_arrow_left</i></button>
+            <button id="next" class="btn"><i class="large material-icons">keyboard_arrow_right</i></button>
+            <button id="delete" class="btn left"><i class="large material-icons">delete</i></button>
+            <button id="save" class="btn right"><i class="large material-icons">done_all</i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="page-footer blue-grey darken-1">
+    <div class="container footer-copyright">
+      &copy; 2018, Jerry Garvey
+    </div>
+  </footer>
+</body>
+<script src="scripts/edit-bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>
