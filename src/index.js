@@ -24,6 +24,9 @@ function initializeEventListeners() {
   document.addEventListener('DOMContentLoaded', async () => {
     var elems = document.querySelectorAll('.modal');
     const modalInstance = M.Modal.init(elems, {});
+    const sideNavElems = document.querySelector('.sidenav');
+    const instances = M.Sidenav.init(sideNavElems, {});
+
     location.hash = '';
     ui.showProgressBar();
     await loadFlashcards();
@@ -35,11 +38,9 @@ function initializeEventListeners() {
   window.addEventListener('hashchange', async () => {
     const id = location.hash.substring(1)
     if (id) {
-      ui.showProgressBar()
       const flashcard = await flashcardController.loadFlashCard(id)
       initFlashCard(flashcard);
       renderQuestion();
-      ui.hideProgressBar();
     } else {
       flashcardController.removeFlashCardQuestions();
       renderQuestion()
@@ -48,15 +49,27 @@ function initializeEventListeners() {
   });
 
   /* when edit link pressed, go to edit.html to edit flash card */
-  ui.editLinkElement.addEventListener('click', () => {
+  /* Add event listeners to both the side nav and main edit links */
 
-    const id = location.hash.substring(1);
-    if (!id) {
-      console.log('no id provided')
-      return
-    }
-    location.assign(`edit.html#${id}`);
+  ui.editLinkElements.forEach(el => {
+    el.addEventListener('click', () => {
+      const id = location.hash.substring(1);
+      if (!id) {
+        console.log('no id provided')
+        return
+      }
+      location.assign(`edit.html#${id}`);
+    })
   })
+  // ui.editLinkElement.addEventListener('click', () => {
+
+  //   const id = location.hash.substring(1);
+  //   if (!id) {
+  //     console.log('no id provided')
+  //     return
+  //   }
+  //   location.assign(`edit.html#${id}`);
+  // })
   ui.submitButton.addEventListener('click', async (e) => {
 
     const subjectElement = document.getElementById('subject');

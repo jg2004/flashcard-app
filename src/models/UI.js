@@ -7,29 +7,46 @@ export default class UI {
     this.nextElement = document.getElementById('next');
     this.prevElement = document.getElementById('prev');
     this.flashCardTitle = document.getElementById('flashcard-title');
-    this.editLinkElement = document.getElementById('edit-link');
+    this.editAndDeleteElements = document.querySelectorAll('.edit-and-delete')
+    this.editLinkElements = document.querySelectorAll('.edit');
     this.deleteLinkElement = document.getElementById('delete-link');
     this.submitButton = document.getElementById('submit-button');
     this.flashcardsTitle = document.getElementById('flashcards-title');
-    this.progressBar = document.getElementById('progress-bar');
+    this.search = document.getElementById('search');
+
+
     this.searchText = document.getElementById('search-text');
     this.deleteButton = document.getElementById('delete-flashcard-set-button');
   }
 
   showProgressBar() {
-    this.progressBar.classList.remove('hide');
+
+    const progressIndicatorHtml = ` 
+     <div id="progress-indicator" class="preloader-wrapper active">
+      <div class="spinner-layer spinner-primary-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+    `
+    this.search.insertAdjacentHTML('afterend', progressIndicatorHtml);
   }
   hideProgressBar() {
-    this.progressBar.classList.add('hide');
+    document.getElementById('progress-indicator').remove()
   }
 
   showEditDeleteLinks() {
-    this.editLinkElement.classList.remove('hide');
-    this.deleteLinkElement.classList.remove('hide');
+    this.editAndDeleteElements.forEach(el => el.classList.remove('hide'))
   }
   hideEditDeleteLinks() {
-    this.editLinkElement.classList.add('hide');
-    this.deleteLinkElement.classList.add('hide');
+    this.editAndDeleteElements.forEach(el => el.classList.add('hide'))
   }
 
   disableButtons() {
@@ -100,7 +117,7 @@ export default class UI {
   }
 
   renderTitle(title, currentQuestion) {
-    console.log('test',currentQuestion)
+    console.log('test', currentQuestion)
     this.flashCardTitle.textContent = `${title} questions (${currentQuestion})`
   }
 }
